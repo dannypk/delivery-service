@@ -26,38 +26,43 @@ describe('DeliveryRouteCalculationService spec', () => {
       it('should return the message No Such Route', () => {
         const cost = deliveryRouteCalculationService.calculateDeliveryRouteCost(['A', 'D', 'F'], ROUTES);
         expect(cost).toBe('No Such Route');
-      })
-    })
+      });
+    });
   });
 
   describe('when calculating number of possible delivery routes', () => {
     it('should return the 4 possible number of delivery routes for E D', () => {
-        deliveryRouteCalculationService.calculatePossibleDeliveryRoutes('E','D', ROUTES, 4);
-      expect(deliveryRouteCalculationService.possibleDeliveryRoutes).toBe(4);
+      const possibleDeliveryRoutes =
+        deliveryRouteCalculationService.calculatePossibleDeliveryRoutes('E', 'D', ROUTES, 4);
+      expect(possibleDeliveryRoutes).toBe(4);
     });
 
     it('should return the 5 possible number of delivery routes for E E', () => {
-      deliveryRouteCalculationService.calculatePossibleDeliveryRoutes('E','E', ROUTES);
-      expect(deliveryRouteCalculationService.possibleDeliveryRoutes).toBe(5);
+      const possibleDeliveryRoutes =
+        deliveryRouteCalculationService.calculatePossibleDeliveryRoutes('E', 'E', ROUTES);
+      expect(possibleDeliveryRoutes).toBe(5);
     });
   });
 
   describe('when calculating number of possible delivery routes with delivery cost limit', () => {
     it('should return the 31 possible number of delivery routes for E E with cost less than 20', () => {
-      deliveryRouteCalculationService.calculatePossibleDeliveryRouteWithMaximumDeliveryCost('E','E', ROUTES, 20);
-      expect(deliveryRouteCalculationService.possibleRoutesWithMaximumDeliveryCost).toBe(31);
+      const possibleDeliveryRouteWithMaximumDeliveryCost =
+        deliveryRouteCalculationService.calculatePossibleDeliveryRouteWithMaximumDeliveryCost('E', 'E', ROUTES, 20);
+      expect(possibleDeliveryRouteWithMaximumDeliveryCost).toBe(31);
     });
   });
 
   describe('when calculating cheapest delivery cost for route', () => {
     it('should return 9 the minimum delivery cost for E D', () => {
-      deliveryRouteCalculationService.calculateMinimumDeliveryCost('E','D', ROUTES);
-      expect(deliveryRouteCalculationService.cheapestDeliveryCost).toBe(9);
+      const minimumDeliveryCost =
+        deliveryRouteCalculationService.calculateMinimumDeliveryCost('E', 'D', ROUTES);
+      expect(minimumDeliveryCost).toBe(9);
     });
 
     it('should return 9 the minimum delivery cost for E E', () => {
-      deliveryRouteCalculationService.calculateMinimumDeliveryCost('E','E', ROUTES);
-      expect(deliveryRouteCalculationService.cheapestDeliveryCost).toBe(6);
+      const minimumDeliveryCost =
+        deliveryRouteCalculationService.calculateMinimumDeliveryCost('E', 'E', ROUTES);
+      expect(minimumDeliveryCost).toBe(6);
     });
   });
 });

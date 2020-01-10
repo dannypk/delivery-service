@@ -2,15 +2,15 @@ import { findDeliveryRoute, initializeDeliveryRoutesWithVisitedFlag } from '../h
 
 class DeliveryRouteCalculationService {
 
-  possibleDeliveryRoutes = 0;
-  cheapestDeliveryCost = 999;
-  possibleRoutesWithMaximumDeliveryCost = 0;
+  _possibleDeliveryRoutes = 0;
+  _cheapestDeliveryCost = 999;
+  _possibleRoutesWithMaximumDeliveryCost = 0;
 
   calculateDeliveryRouteCost(route, deliveryRoutes) {
     let cost = 0;
     for (let index = 0; index < route.length - 1; index++) {
-      let origin = route[index];
-      let destination = route[index + 1];
+      const origin = route[index];
+      const destination = route[index + 1];
 
       const deliveryRoute = findDeliveryRoute(origin, destination, deliveryRoutes);
 
@@ -25,31 +25,31 @@ class DeliveryRouteCalculationService {
   }
 
   calculatePossibleDeliveryRoutes(origin, destination, deliveryRoutes, maximumStops) {
-    this.possibleDeliveryRoutes = 0;
+    this._possibleDeliveryRoutes = 0;
 
     const deliveryRoutesWithVisitedFlag = initializeDeliveryRoutesWithVisitedFlag(deliveryRoutes);
     this._findPossibleDeliveryRoutes(origin, destination, deliveryRoutesWithVisitedFlag, maximumStops);
 
-    return this.possibleDeliveryRoutes;
+    return this._possibleDeliveryRoutes;
   }
 
   calculatePossibleDeliveryRouteWithMaximumDeliveryCost(origin, destination, deliveryRoutes, deliveryCost) {
-    this.possibleRoutesWithMaximumDeliveryCost = 0;
+    this._possibleRoutesWithMaximumDeliveryCost = 0;
     this._findRouteWithMaximumDeliveryCost(origin, destination, deliveryRoutes, deliveryCost);
 
-    return this.possibleRoutesWithMaximumDeliveryCost;
+    return this._possibleRoutesWithMaximumDeliveryCost;
   }
 
   calculateMinimumDeliveryCost(origin, destination, deliveryRoutes) {
-    this.cheapestDeliveryCost = 999;
+    this._cheapestDeliveryCost = 999;
     const flaggedDeliveryRoutes = deliveryRoutes.map(deliveryRoute => ({ ...deliveryRoute, visited: false }));
     this._findMinimumDelivery(origin, destination, flaggedDeliveryRoutes, 0);
 
-    return this.cheapestDeliveryCost;
+    return this._cheapestDeliveryCost;
   }
 
   _findPossibleDeliveryRoutes(origin, destination, deliveryRoutes, stopsLeft) {
-    if (stopsLeft !== undefined && !isNaN(stopsLeft) && stopsLeft === 0) {
+    if (stopsLeft !== undefined && !Number.isNaN(stopsLeft) && stopsLeft === 0) {
       return;
     }
 
@@ -59,7 +59,7 @@ class DeliveryRouteCalculationService {
     deliveryRoutesForOrigin.forEach(deliveryRoute => {
       if (!deliveryRoute.visited) {
         if (deliveryRoute.destination === destination) {
-          this.possibleDeliveryRoutes++;
+          this._possibleDeliveryRoutes++;
           return;
         }
 
@@ -81,7 +81,7 @@ class DeliveryRouteCalculationService {
     });
 
     if (origin === destination) {
-      this.possibleRoutesWithMaximumDeliveryCost++;
+      this._possibleRoutesWithMaximumDeliveryCost++;
     }
   }
 
@@ -90,10 +90,10 @@ class DeliveryRouteCalculationService {
     const deliveryRoutesForOrigin = clonedDeliveryRoutes.filter(deliveryRoute => deliveryRoute.origin === origin);
 
     deliveryRoutesForOrigin.forEach(deliveryRoute => {
-      if (!deliveryRoute.visited ) {
+      if (!deliveryRoute.visited) {
         const newDeliveryCost = deliveryCost + deliveryRoute.cost;
-        if (deliveryRoute.destination === destination && newDeliveryCost < this.cheapestDeliveryCost) {
-          this.cheapestDeliveryCost = newDeliveryCost;
+        if (deliveryRoute.destination === destination && newDeliveryCost < this._cheapestDeliveryCost) {
+          this._cheapestDeliveryCost = newDeliveryCost;
           return;
         }
 

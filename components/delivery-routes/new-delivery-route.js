@@ -6,7 +6,6 @@ import FormInput from '../common/form-input';
 import deliveryRouteStore from '../../stores/delivery-route.store';
 import './new-delivery-route.less';
 
-
 const NewDeliveryRoute = () => {
   const [newDeliveryRoute, setNewDeliveryRoute] = useState('');
 

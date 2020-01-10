@@ -18,11 +18,11 @@ class DeliveryRouteStore {
     const [origin, destination, cost] = deliveryRoute.split('');
     const routeAlreadyExists = findDeliveryRoute(origin, destination, this.deliveryRoutes);
 
-    if (!origin || !destination || !cost|| routeAlreadyExists) {
+    if (!origin || !destination || !cost || routeAlreadyExists) {
       return;
     }
 
-    this.deliveryRoutes.push({ origin, destination, cost: parseInt(cost) });
+    this.deliveryRoutes.push({ origin, destination, cost: parseInt(cost, 10) });
   }
 
   calculateCost(route) {

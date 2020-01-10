@@ -4,13 +4,11 @@ import classnames from 'classnames';
 
 import './button.less';
 
-const Button = ({ className, label, onClick }) => {
-  return (
-    <button type="button" className={classnames('Button', className)} onClick={() => onClick()}>
-      {label}
-    </button>
-  )
-};
+const Button = ({ className, label, onClick }) => (
+  <button type="button" className={classnames('Button', className)} onClick={() => onClick()}>
+    {label}
+  </button>
+);
 
 Button.propTypes = {
   className: PropTypes.string,

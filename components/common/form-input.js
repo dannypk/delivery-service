@@ -1,20 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './form-input.less'
+import './form-input.less';
 
-const FormInput = ({ onChange, value, placeholder, label }) => {
-  return (
-    <div className="FormInput">
-      <label className="FormInput-label">{label}:</label>
-      <input
+const FormInput = ({ onChange, value, placeholder, label }) => (
+  <div className="FormInput">
+    <label className="FormInput-label">{label}:</label>
+    <input
         onChange={event => onChange(event.target.value)}
         value={value}
         placeholder={placeholder}
       />
-    </div>
-  )
-};
+  </div>
+);
 
 FormInput.propTypes = {
   label: PropTypes.string.isRequired,
@@ -24,7 +22,7 @@ FormInput.propTypes = {
 };
 
 FormInput.defaultProps = {
-  placeHolder: ''
+  placeholder: ''
 };
 
 export default FormInput;

@@ -1,5 +1,5 @@
-import React from 'react'
-import Head from 'next/head'
+import React from 'react';
+import Head from 'next/head';
 
 import DeliveryRoute from '../components/delivery-routes/new-delivery-route';
 import DeliveryRouteList from '../components/delivery-routes/delivery-route-list';
@@ -36,4 +36,4 @@ const DeliveryRoutes = () => (
   </div>
 );
 
-export default DeliveryRoutes
+export default DeliveryRoutes;
