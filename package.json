@@ -1,0 +1,34 @@
+{
+  "name": "delivery-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "test": "jest --config=./jest.config.js"
+  },
+  "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "@babel/plugin-proposal-decorators": "^7.7.4",
+    "@zeit/next-less": "1.0.1",
+    "classnames": "^2.2.6",
+    "jest": "^24.9.0",
+    "less": "^3.10.3",
+    "mobx": "5.15.1",
+    "mobx-react": "^6.1.4",
+    "next": "9.1.7",
+    "prop-types": "^15.7.2",
+    "react": "16.12.0",
+    "react-dom": "16.12.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dannypk/delivery-service.git"
+  },
+  "author": "daniel.pacurici",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dannypk/delivery-service/issues"
+  },
+  "homepage": "https://github.com/dannypk/delivery-service#readme"
+}
